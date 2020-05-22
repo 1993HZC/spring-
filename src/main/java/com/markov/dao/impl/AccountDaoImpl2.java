@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class IAccountDaoImpl2 implements IAccountDao {
+public class AccountDaoImpl2 implements IAccountDao {
 
     public void saveAccount(){
         System.out.println("DAO2222执行成功");

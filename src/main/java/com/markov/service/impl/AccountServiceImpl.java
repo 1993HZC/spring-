@@ -1,25 +1,22 @@
 package com.markov.service.impl;
 
-import com.markov.dao.IAccountDao;
-import com.markov.dao.impl.IAccountDaoImpl1;
+import com.markov.dao.impl.AccountDaoImpl1;
 import com.markov.domain.Account;
 import com.markov.service.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
-
 @Service
-public class AccountService implements IAccountService {
+public class AccountServiceImpl implements IAccountService {
 
-    @Autowired
-    @Qualifier("IAccountDaoImpl1")
+//    @Autowired
+//    @Qualifier("IAccountDaoImpl1")
 //    @Resource()
-    private IAccountDaoImpl1 accountDao;
+    @Autowired
+    private AccountDaoImpl1 accountDao;
 
 
     @Override
@@ -42,5 +39,13 @@ public class AccountService implements IAccountService {
     public void deleteAccount(Integer accountId) {
         accountDao.deleteAccount(accountId);
 
+    }
+
+    public void setAccountDaoImpl1(AccountDaoImpl1 accountDaoImpl1) {
+        this.accountDao = accountDaoImpl1;
+    }
+
+    public AccountDaoImpl1 getAccountDaoImpl1() {
+        return accountDao;
     }
 }

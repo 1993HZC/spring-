@@ -1,7 +1,10 @@
 package com.markov.domain;
 
+import org.springframework.stereotype.Component;
+
 import java.io.Serializable;
 
+@Component
 public class Account implements Serializable {
     private Integer id;
     private String name;

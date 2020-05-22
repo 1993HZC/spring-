@@ -12,10 +12,12 @@ import java.util.List;
 
 
 @Repository
-public class IAccountDaoImpl1 implements IAccountDao {
+public class AccountDaoImpl1 implements IAccountDao {
 
+//    xml使用set方法注
     @Autowired
     private QueryRunner runner;
+
     @Override
     public void saveAccount(Account acct) {
         System.out.println("Dao111111执行成功");
@@ -62,5 +64,9 @@ public class IAccountDaoImpl1 implements IAccountDao {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public QueryRunner getRunner() {
+        return runner;
     }
 }

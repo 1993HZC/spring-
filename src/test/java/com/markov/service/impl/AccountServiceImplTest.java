@@ -1,20 +1,35 @@
 package com.markov.service.impl;
 
+import com.markov.config.Config;
+import com.markov.dao.impl.AccountDaoImpl1;
 import com.markov.domain.Account;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
 import static org.junit.Assert.*;
 
-@ComponentScan("com.markov")
+
+@RunWith(SpringJUnit4ClassRunner.class)
+//纯注解配置使用ContextConfiguration
+//要使用location=xml路径
+@ContextConfiguration(classes = Config.class)
 public class AccountServiceImplTest {
 
-    private ClassPathXmlApplicationContext cp=new ClassPathXmlApplicationContext("bean.xml");
-    private AccountServiceImpl accountService=cp.getBean("accountServiceImpl",AccountServiceImpl.class);
+//    Junit不能正常使用autowired
+////    private ClassPathXmlApplicationContext cp=new ClassPathXmlApplicationContext("bean.xml");
+//    private AnnotationConfigApplicationContext ac=new AnnotationConfigApplicationContext(Config.class);
+//    private AccountServiceImpl accountService=ac.getBean("accountServiceImpl",AccountServiceImpl.class);
+
+    @Autowired
+    private AccountServiceImpl accountService;
 
     @Test
     public void saveAccount() {
@@ -50,5 +65,6 @@ public class AccountServiceImplTest {
 
     @Test
     public void deleteAccount() {
+
     }
 }

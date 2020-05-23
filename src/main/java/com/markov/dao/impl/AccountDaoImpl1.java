@@ -40,7 +40,7 @@ public class AccountDaoImpl1 implements IAccountDao {
     @Override
     public Account findAccountById(Integer accountId) {
         try {
-            return runner.query("select * from account",new BeanHandler<Account>(Account.class));
+            return runner.query("select * from account where id=?",accountId,new BeanHandler<Account>(Account.class));
         }catch (Exception e){
             throw new RuntimeException(e);
         }

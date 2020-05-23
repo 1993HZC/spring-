@@ -16,7 +16,7 @@ public class AccountServiceImpl implements IAccountService {
 //    @Qualifier("IAccountDaoImpl1")
 //    @Resource()
     @Autowired
-    private AccountDaoImpl1 accountDao;
+    public AccountDaoImpl1 accountDao;
 
 
     @Override
@@ -41,9 +41,6 @@ public class AccountServiceImpl implements IAccountService {
 
     }
 
-    public void setAccountDaoImpl1(AccountDaoImpl1 accountDaoImpl1) {
-        this.accountDao = accountDaoImpl1;
-    }
 
     public AccountDaoImpl1 getAccountDaoImpl1() {
         return accountDao;

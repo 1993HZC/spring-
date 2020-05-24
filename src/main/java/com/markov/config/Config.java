@@ -10,7 +10,10 @@ import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan("com.markov")
+//引用JDBCConfig这个类为配置类，也要加载JDBCConfig里面的配置
+//将配置类JDBCconfig这个类视为Config配置类的子类
 @Import(JDBCconfig.class)
+//指定配置类文件 也可以是PropertySources负数，可以添加多个文件名字
 @PropertySource("classpath:jdbcConfig.properties")
 public class Config {
 

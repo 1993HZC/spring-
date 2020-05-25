@@ -1,48 +1,141 @@
 package com.markov.service.impl;
 
-import com.markov.dao.impl.AccountDaoImpl1;
+import com.markov.dao.IAccountDao;
 import com.markov.domain.Account;
 import com.markov.service.IAccountService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
+import com.markov.utils.TransactionManager;
 
 import java.util.List;
 
-@Service
-public class AccountServiceImpl implements IAccountService {
+/**
+ * 账户的业务层实现类
+ */
+public class AccountServiceImpl implements IAccountService{
 
-//    @Autowired
-//    @Qualifier("IAccountDaoImpl1")
-//    @Resource()
-    @Autowired
-    public AccountDaoImpl1 accountDao;
+    private IAccountDao accountDao;
+    private TransactionManager transactionManager;
 
 
-    @Override
-    public void saveAccount(Account acct) {
-        accountDao.saveAccount(acct);
+    public void setTransactionManager(TransactionManager transactionManager) {
+        this.transactionManager = transactionManager;
     }
+
+
+    public void setAccountDao(IAccountDao accountDao) {
+        this.accountDao = accountDao;
+    }
+
     @Override
     public List<Account> findAllAccount() {
-        return accountDao.findAllAccount();
+        try{
+            //开启事务
+            transactionManager.beginTransaction();
+            //执行操作
+            List<Account> accounts=accountDao.findAllAccount();
+            //提交事务
+            transactionManager.commit();
+            //返回结果
+            return accounts;
+        }catch (Exception e){
+            transactionManager.rollback();
+            throw new RuntimeException(e);
+        }finally {
+            transactionManager.release();
+        }
     }
+
     @Override
     public Account findAccountById(Integer accountId) {
-        return accountDao.findAccountById(accountId);
+        try{
+            //开启事务
+            transactionManager.beginTransaction();
+            //执行操作
+            Account account=accountDao.findAccountById(accountId);
+            //提交事务
+            transactionManager.commit();
+            //返回结果
+            return account;
+        }catch (Exception e){
+            transactionManager.rollback();
+            throw new RuntimeException(e);
+        }finally {
+            transactionManager.release();
+        }
     }
+
+    @Override
+    public void saveAccount(Account account) {
+        try{
+            //开启事务
+            transactionManager.beginTransaction();
+            //执行操作
+            accountDao.saveAccount(account);
+            //提交事务
+            transactionManager.commit();
+        }catch (Exception e){
+            transactionManager.rollback();
+            throw new RuntimeException(e);
+        }finally {
+            transactionManager.release();
+        }
+    }
+
     @Override
     public void updateAccount(Account account) {
-        accountDao.updateAccount(account);
+        try{
+            //开启事务
+            transactionManager.beginTransaction();
+            //执行操作
+            accountDao.updateAccount(account);
+            //提交事务
+            transactionManager.commit();
+
+        }catch (Exception e){
+            transactionManager.rollback();
+            throw new RuntimeException(e);
+        }finally {
+            transactionManager.release();
+        }
+    }
+
+    @Override
+    public void deleteAccount(Integer acccountId) {
+        try{
+            //开启事务
+            transactionManager.beginTransaction();
+            //执行操作
+            accountDao.deleteAccount(acccountId);
+            //提交事务
+            transactionManager.commit();
+        }catch (Exception e){
+            transactionManager.rollback();
+            throw new RuntimeException(e);
+        }finally {
+            transactionManager.release();
+        }
     }
     @Override
-    public void deleteAccount(Integer accountId) {
-        accountDao.deleteAccount(accountId);
-
+    public void transfer(String fromAcctName, String  toAcctName, Integer money) {
+        try{
+            //开启事务
+            transactionManager.beginTransaction();
+            //执行操作
+            Account fromAcct=accountDao.findAcctByName(fromAcctName);
+            Account toAccct=accountDao.findAcctByName(toAcctName);
+            fromAcct.setMoney(fromAcct.getMoney()-money);
+            toAccct.setMoney(toAccct.getMoney()+money);
+            accountDao.updateAccount(fromAcct);
+            int i=1/0;
+            accountDao.updateAccount(toAccct);
+            //提交事务
+            transactionManager.commit();
+            //返回结果
+        }catch (Exception e){
+            transactionManager.rollback();
+//            throw new RuntimeException(e);
+        }finally {
+            transactionManager.release();
+        }
     }
 
-
-    public AccountDaoImpl1 getAccountDaoImpl1() {
-        return accountDao;
-    }
 }

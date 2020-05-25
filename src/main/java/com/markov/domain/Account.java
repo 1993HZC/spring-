@@ -1,11 +1,12 @@
 package com.markov.domain;
 
-import org.springframework.stereotype.Component;
-
 import java.io.Serializable;
 
-@Component
+/**
+ * 账户的实体类
+ */
 public class Account implements Serializable {
+
     private Integer id;
     private String name;
     private Float money;

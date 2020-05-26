@@ -11,7 +11,7 @@ public class TransactionManager {
     * */
     public void beginTransaction(){
         try{
-            connectionUtils.getThreadConnection().setAutoCommit(true);
+            connectionUtils.getThreadConnection().setAutoCommit(false);
         }catch(Exception e){
             e.printStackTrace();
         }

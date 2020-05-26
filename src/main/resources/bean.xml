@@ -29,7 +29,6 @@
         <property name="user" value="hzc"></property>
         <property name="password" value="hzc123"></property>
     </bean>
-
     <!--配置connectionUtils对象-->
     <bean id="connectionUtils" class="com.markov.utils.ConnectionUtils">
         <!-- 注入QueryRunner -->

@@ -17,6 +17,7 @@ public class ConnectionUtils {
             Connection conn=tl.get();
             if (conn==null){
                 conn=dataSource.getConnection();
+                tl.set(conn);
             }
             return conn;
         } catch (Exception e) {

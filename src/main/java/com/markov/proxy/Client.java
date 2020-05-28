@@ -9,7 +9,9 @@ public class Client {
         final Producer producer =new Producer();
         /**
          * newProxyInstance的前两个参数是固定写法
+         * 被代理的类必须要有接口类，否则不行，接口类（IProducer）
          * */
+
         IProducer proxyProducer = (IProducer) Proxy.newProxyInstance(producer.getClass().getClassLoader(),
                 producer.getClass().getInterfaces(),
                 new InvocationHandler() {

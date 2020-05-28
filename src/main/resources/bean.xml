@@ -3,11 +3,12 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--    从beanFactory这个类的getAccountService方法中-->
+    <bean id="proxyService" factory-bean="beanFactory" factory-method="getAccountService"></bean>
     <!-- 配置Service -->
     <bean id="accountService" class="com.markov.service.impl.AccountServiceImpl">
         <!-- 注入dao -->
         <property name="accountDao" ref="accountDao"></property>
-        <property name="transactionManager" ref="transactionManager"></property>
     </bean>
 
     <!--配置Dao对象-->
@@ -15,6 +16,10 @@
         <!-- 注入QueryRunner -->
         <property name="runner" ref="runner"></property>
         <property name="connectionUtils" ref="connectionUtils"></property>
+    </bean>
+    <bean id="beanFactory" class="com.markov.proxy.BeanFactory">
+        <property name="accountService" ref="accountService"></property>
+        <property name="transactionManager" ref="transactionManager"></property>
     </bean>
 
     <!--配置QueryRunner-->

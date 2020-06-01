@@ -2,7 +2,12 @@ package com.markov.service.impl;
 
 import com.markov.service.IAccountService;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 
+
+@Scope("prototype")
+@Service("accountService")
 public class AccountService implements IAccountService {
     @Override
     public void saveAccount() {

@@ -1,15 +1,27 @@
 package com.markov.utils;
 
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
+import org.springframework.stereotype.Component;
 
+@Component("logger")
+/*表示当前类是一个切面类*/
+@Aspect
 public class Logger {
+//    设置pt1为切面点
+    @Pointcut("execution(* com.markov.service.impl.*.*(..))")
+    private void pt1(){};
+//    @Before("pt1()")
     public void printLog(){
         System.out.println("Logger执行");
     }
+//    @AfterReturning("pt1()")
     public void afterReturnLog(){System.out.println("Logger正常完成执行afterLog");}
+//    @AfterThrowing("pt1()")
     public void throwingPrintLog(){System.out.println("Logger异常执行");}
+//    @After("pt1()")
     public void finallyLog(){System.out.println("finally执行");}
-
+    @Around("pt1()")
     public Object aroundPrintLog(ProceedingJoinPoint proceedingJoinPoint){
         Object returnValue= null;
         try{

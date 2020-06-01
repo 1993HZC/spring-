@@ -1,13 +1,10 @@
 package com.markov.service;
 
-import com.markov.domain.Account;
-
-import java.util.List;
+import org.aspectj.lang.ProceedingJoinPoint;
 
 public interface IAccountService {
-    void saveAccount(Account acct);
-    List<Account>findAllAccount();
-    Account findAccountById(Integer accountId);
-    void updateAccount(Account account);
-    void deleteAccount(Integer accountId);
+    void saveAccount();
+    void updateAccount(int i);
+    int deleteAccount();
+
 }

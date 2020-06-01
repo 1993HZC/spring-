@@ -2,8 +2,33 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd">
+        http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <bean id="logger" class="com.markov.utils.Logger"></bean>
+    <bean id="accountService" class="com.markov.service.impl.AccountService"></bean>
+
+    <aop:config>
+        <aop:aspect id="logAdvice" ref="logger">
+<!--            <aop:before method="printLog" pointcut="execution(public void com.markov.service.impl.AccountService.saveAccount())"></aop:before>-->
+<!--            通配表达式 增强impl下的所有方法-->
+<!--            <aop:before method="printLog" pointcut="execution(* com.markov.service.impl.*.*(..))"></aop:before>-->
+<!--            <aop:before method="printLog" pointcut="execution(* com.markov.service.impl.AccountService.*(..))"></aop:before>-->
+<!--            <aop:before method="printLog" pointcut-ref="pt1"></aop:before>-->
+
+<!--            <aop:after-returning method="afterReturnLog" pointcut-ref="pt1"></aop:after-returning>-->
+
+<!--            <aop:after-throwing method="throwingPrintLog" pointcut-ref="pt1"></aop:after-throwing>-->
+
+<!--            <aop:after method="finallyLog" pointcut-ref="pt1"></aop:after>-->
+
+            <aop:around method="aroundPrintLog" pointcut-ref="pt1"></aop:around>
+
+            <aop:pointcut id="pt1" expression="execution(* com.markov.service.impl.*.*(..))"></aop:pointcut>
+
+
+        </aop:aspect>
+    </aop:config>
 </beans>

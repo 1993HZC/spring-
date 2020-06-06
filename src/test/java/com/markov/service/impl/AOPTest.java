@@ -13,5 +13,6 @@ public class AOPTest {
         accountService.saveAccount();
         accountService.deleteAccount();
         accountService.updateAccount(1);
+        System.out.println(accountService.findAllAccount());
     }
 }

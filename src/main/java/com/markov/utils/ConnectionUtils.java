@@ -1,10 +1,12 @@
 package com.markov.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 
+@Component
 public class ConnectionUtils {
     private ThreadLocal<Connection>tl=new ThreadLocal<Connection>();
     @Autowired

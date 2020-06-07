@@ -1,11 +1,16 @@
 package com.markov.utils;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class TransactionManager {
+    @Autowired
     private ConnectionUtils connectionUtils;
 
-    public void setConnectionUtils(ConnectionUtils connectionUtils) {
-        this.connectionUtils = connectionUtils;
-    }
+//    public void setConnectionUtils(ConnectionUtils connectionUtils) {
+//        this.connectionUtils = connectionUtils;
+//    }
     /**
     * 开启事务
     * */

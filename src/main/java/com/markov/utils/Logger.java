@@ -2,12 +2,15 @@ package com.markov.utils;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component("logger")
 /*表示当前类是一个切面类*/
 @Aspect
 public class Logger {
+    @Autowired
+    private TransactionManager transactionManager;
 //    设置pt1为切面点
     @Pointcut("execution(* com.markov.service.impl.*.*(..))")
     private void pt1(){};
@@ -26,6 +29,7 @@ public class Logger {
         Object returnValue= null;
         try{
             Object args[]=proceedingJoinPoint.getArgs();
+            transactionManager.beginTransaction();
             System.out.println("这也叫前置通知");
             returnValue=proceedingJoinPoint.proceed(args);
             System.out.println("这也叫后置通知");

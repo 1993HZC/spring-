@@ -29,17 +29,23 @@ public class Logger {
         Object returnValue= null;
         try{
             Object args[]=proceedingJoinPoint.getArgs();
+            System.out.println(transactionManager);
+            System.out.println(transactionManager.connectionUtils);
             transactionManager.beginTransaction();
             System.out.println("这也叫前置通知");
             returnValue=proceedingJoinPoint.proceed(args);
+            System.out.println(transactionManager);
+            System.out.println(transactionManager.connectionUtils);
+            transactionManager.commit();
             System.out.println("这也叫后置通知");
             return returnValue;
         }catch (Throwable t){
             System.out.println("这也叫异常通知");
+            transactionManager.rollback();
             throw new RuntimeException(t);
 
         }finally {
-
+            transactionManager.release();
             System.out.println("这也叫最终通知");
 
         }

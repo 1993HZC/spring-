@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TransactionManager {
     @Autowired
-    private ConnectionUtils connectionUtils;
+    public ConnectionUtils connectionUtils;
 
 //    public void setConnectionUtils(ConnectionUtils connectionUtils) {
 //        this.connectionUtils = connectionUtils;

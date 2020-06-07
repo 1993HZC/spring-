@@ -8,8 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class AOPTest {
-    @Autowired
-    private TransactionManager transactionManager;
+
 
     public static void main(String args[]){
         ApplicationContext ac= new ClassPathXmlApplicationContext("bean.xml");
@@ -18,7 +17,7 @@ public class AOPTest {
         System.out.println(accountService.findAllAccount());
 
         accountService.transfer("aaa","bbb",10);
-        System.out.println(accountService.findAllAccount());
+//        System.out.println(accountService.findAllAccount());
 
 
     }

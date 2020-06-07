@@ -23,8 +23,8 @@ public class AccountService implements IAccountService {
     }
 
     @Override
-    public void updateAccount(int i) {
-        System.out.println("升级账户");
+    public void updateAccount(Account account) {
+        accountDao.updateAccount(account);
 
     }
 
@@ -37,6 +37,20 @@ public class AccountService implements IAccountService {
     @Override
     public List<Account> findAllAccount() {
         return accountDao.findAllAccount();
+    }
+
+    @Override
+    public Account findAccountByName(String name) {
+        return accountDao.findAccountByName(name);
+    }
+    @Override
+    public void transfer(String fromAcctName,String toAcctName,float money){
+        Account fromAcct= this.findAccountByName(fromAcctName);
+        Account toAcct=this.findAccountByName(toAcctName);
+        fromAcct.setMoney(fromAcct.getMoney()-money);
+        toAcct.setMoney(toAcct.getMoney()+money);
+        this.updateAccount(fromAcct);
+        this.updateAccount(toAcct);
     }
 //    环绕通知固定用法 ProceedingJoinPoint固定参数
 }

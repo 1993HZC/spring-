@@ -9,4 +9,7 @@ public interface IAccountDao {
     void saveAccount(Account acct);
 
     List<Account> findAllAccount();
+
+    Account findAccountByName(String name);
+    void updateAccount(Account account);
 }

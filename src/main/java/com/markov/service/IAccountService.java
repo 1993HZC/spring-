@@ -7,8 +7,10 @@ import java.util.List;
 
 public interface IAccountService {
     void saveAccount();
-    void updateAccount(int i);
+    void updateAccount(Account account);
     int deleteAccount();
     List<Account> findAllAccount();
+    Account findAccountByName(String name);
 
+    void transfer(String fromAcctName, String toAcctName, float money);
 }

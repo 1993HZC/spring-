@@ -51,7 +51,7 @@ public class AccountService implements IAccountService {
         fromAcct.setMoney(fromAcct.getMoney()-money);
         toAcct.setMoney(toAcct.getMoney()+money);
         this.updateAccount(fromAcct);
-//        int i=1/0;
+        int i=1/0;
         this.updateAccount(toAcct);
     }
 //    环绕通知固定用法 ProceedingJoinPoint固定参数

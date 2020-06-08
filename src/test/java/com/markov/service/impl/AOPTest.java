@@ -19,6 +19,5 @@ public class AOPTest {
         accountService.transfer("aaa","bbb",10);
 //        System.out.println(accountService.findAllAccount());
 
-
     }
 }

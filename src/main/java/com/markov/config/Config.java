@@ -16,5 +16,4 @@ import javax.sql.DataSource;
 //指定配置类文件 也可以是PropertySources负数，可以添加多个文件名字
 @PropertySource("classpath:jdbcConfig.properties")
 public class Config {
-
 }

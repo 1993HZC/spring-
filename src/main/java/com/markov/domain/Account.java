@@ -1,20 +1,14 @@
 package com.markov.domain;
 
-import org.springframework.stereotype.Component;
-
-import java.io.Serializable;
-
-@Component
-public class Account implements Serializable {
-    private Integer id;
-    private String name;
-    private Float money;
-
-    public Integer getId() {
+public class Account {
+    public int id;
+    public String name;
+    public Float money;
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -33,7 +27,6 @@ public class Account implements Serializable {
     public void setMoney(Float money) {
         this.money = money;
     }
-
     @Override
     public String toString() {
         return "Account{" +

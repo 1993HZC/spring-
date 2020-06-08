@@ -5,9 +5,11 @@ import com.markov.domain.Account;
 import java.util.List;
 
 public interface IAccountDao {
+
     void saveAccount(Account acct);
+
     List<Account> findAllAccount();
-    Account findAccountById(Integer accountId);
+
+    Account findAccountByName(String name);
     void updateAccount(Account account);
-    void deleteAccount(Integer accountId);
 }

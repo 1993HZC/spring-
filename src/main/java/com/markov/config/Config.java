@@ -14,7 +14,8 @@ import javax.sql.DataSource;
 //将配置类JDBCconfig这个类视为Config配置类的子类
 @Import(JDBCconfig.class)
 //指定配置类文件 也可以是PropertySources负数，可以添加多个文件名字
-@PropertySource("classpath:jdbcConfig.properties")
+@PropertySources({@PropertySource("classpath:jdbcConfig.properties"),
+        @PropertySource("classpath:fastjson.properties")})
 public class Config {
 
 }

@@ -6,10 +6,7 @@ import java.util.List;
 
 public interface IAccountDao {
 
-    void saveAccount(Account acct);
-
-    List<Account> findAllAccount();
-
-    Account findAccountByName(String name);
+    Account findAccountById(Integer accountId);
+    Account findAccountByName(String accountName);
     void updateAccount(Account account);
 }

@@ -1,14 +1,21 @@
 package com.markov.domain;
 
-public class Account {
-    public int id;
-    public String name;
-    public Float money;
-    public int getId() {
+import java.io.Serializable;
+
+/**
+ * 账户的实体类
+ */
+public class Account implements Serializable {
+
+    private Integer id;
+    private String name;
+    private Float money;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -27,6 +34,7 @@ public class Account {
     public void setMoney(Float money) {
         this.money = money;
     }
+
     @Override
     public String toString() {
         return "Account{" +

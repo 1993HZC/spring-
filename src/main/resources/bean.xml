@@ -12,4 +12,20 @@
 <!--    配置AOP，有这句就支持aop注解 ，否则不生效-->
     <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
+
+    <!-- 配置账户的持久层-->
+    <bean id="accountDao" class="com.markov.dao.impl.AccountDaoImpl">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <!-- 配置数据源-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+        <property name="url" value="jdbc:mysql://106.52.215.167:3306/houses"></property>
+        <property name="username" value="hzc"></property>
+        <property name="password" value="hzc123"></property>
+    </bean>
+    <bean id="accountService" class="com.markov.service.impl.AccountServiceImpl">
+        <property name="accountDao" ref="accountDao"></property>
+    </bean>
 </beans>

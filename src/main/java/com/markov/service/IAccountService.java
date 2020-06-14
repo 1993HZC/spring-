@@ -1,16 +1,23 @@
 package com.markov.service;
 
 import com.markov.domain.Account;
-import org.aspectj.lang.ProceedingJoinPoint;
 
-import java.util.List;
-
+/**
+ * 账户的业务层接口
+ */
 public interface IAccountService {
-    void saveAccount();
-    void updateAccount(Account account);
-    int deleteAccount();
-    List<Account> findAllAccount();
-    Account findAccountByName(String name);
+    /**
+     * 根据id查询账户信息
+     * @param accountId
+     * @return
+     */
+    Account findAccountById(Integer accountId);
 
-    void transfer(String fromAcctName, String toAcctName, float money);
+    /**
+     * 转账
+     * @param sourceName    转成账户名称
+     * @param targetName    转入账户名称
+     * @param money         转账金额
+     */
+    void transfer(String sourceName, String targetName, Float money);
 }

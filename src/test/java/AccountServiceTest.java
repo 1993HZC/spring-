@@ -1,3 +1,4 @@
+import com.markov.config.SpringConfiguration;
 import com.markov.domain.Account;
 import com.markov.service.IAccountService;
 import com.markov.service.impl.AccountServiceImpl;
@@ -13,7 +14,9 @@ import javax.annotation.Resource;
  * 使用Junit单元测试：测试我们的配置
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:bean.xml")
+//@ContextConfiguration(locations = "classpath:bean.xml")
+@ContextConfiguration(classes = SpringConfiguration.class)
+
 public class AccountServiceTest {
 
     @Resource(name="accountServiceImpl")

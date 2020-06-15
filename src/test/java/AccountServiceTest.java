@@ -1,10 +1,13 @@
 import com.markov.domain.Account;
 import com.markov.service.IAccountService;
+import com.markov.service.impl.AccountServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import javax.annotation.Resource;
 
 /**
  * 使用Junit单元测试：测试我们的配置
@@ -13,16 +16,16 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = "classpath:bean.xml")
 public class AccountServiceTest {
 
-    @Autowired
-    private  IAccountService as;
+    @Resource(name="accountServiceImpl")
+    private IAccountService accountService;
 
     @Test
-    public  void testTransfer(){
-        as.transfer("aaa","bbb",100f);
+    public void testTransfer(){
+        accountService.transfer("aaa","bbb",100f);
     }
     @Test
     public void testFind(){
-        Account account=as.findAccountById(1);
+        Account account=accountService.findAccountById(1);
         System.out.println(account);
     }
 

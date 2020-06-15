@@ -5,18 +5,19 @@ import com.markov.domain.Account;
 import com.markov.service.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 账户的业务层实现类
  *
  * 事务控制应该都是在业务层
  */
+@Service("accountServiceImpl")
+@Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
 public class AccountServiceImpl implements IAccountService{
+    @Autowired
     private IAccountDao accountDao;
-
-    public void setAccountDao(IAccountDao accountDao) {
-        this.accountDao = accountDao;
-    }
 
     @Override
     public Account findAccountById(Integer accountId) {
@@ -25,7 +26,7 @@ public class AccountServiceImpl implements IAccountService{
     }
 
 
-
+    @Transactional(propagation = Propagation.REQUIRED,readOnly = false)
     @Override
     public void transfer(String sourceName, String targetName, Float money) {
         System.out.println("transfer....");
@@ -40,7 +41,7 @@ public class AccountServiceImpl implements IAccountService{
             //2.5更新转出账户
             accountDao.updateAccount(source);
 
-//            int i=1/0;
+            int i=1/0;
 
             //2.6更新转入账户
             accountDao.updateAccount(target);
